@@ -12,16 +12,18 @@ type ChainTokenList = {
 
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
-export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
+
 export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
 export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 
-export const SODA = new Token(ChainId.KOVAN, '0x11B6D2Be7BB15A9b2A1B83Fde78E853657cA98ee', 18, 'SODA', 'Soda')
+export const USDT = new Token(ChainId.KOVAN, '0x0EC0A24cF31034fa22585E4773842610725C9003', 18, 'USDT', 'mock USDT')
 
-export const SOETH = new Token(ChainId.KOVAN, '0x2D53b210BDe99e514F509cE2Aa53045d65F2eA02', 18, 'SOETH', 'SoETH')
+export const SODA = new Token(ChainId.KOVAN, '0xDFA55ECB77D36893657DA9aCB9ffd2800f430AB8', 18, 'SODA', 'Soda')
 
-export const SODAWETH = new Token(ChainId.KOVAN, '0xebD3a12933d716fa13A80B471b078232e1644653', 18, 'WETH', 'mock WETH')
+export const SOETH = new Token(ChainId.KOVAN, '0xf27690074262b0991B29b6A90BfD7B983aBbB168', 18, 'SOETH', 'SoETH')
+
+export const SODAWETH = new Token(ChainId.KOVAN, '0x246efCba5E8881635693fa8cC85048803aC6be38', 18, 'WETH', 'mock WETH')
 
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
@@ -35,7 +37,7 @@ const WETH_ONLY: ChainTokenList = {
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, COMP, MKR],
-  [ChainId.KOVAN]: [...WETH_ONLY[ChainId.KOVAN], SODA],
+  [ChainId.KOVAN]: [...WETH_ONLY[ChainId.KOVAN], SODA, USDT],
 }
 
 /**
@@ -52,14 +54,14 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT],
-  [ChainId.KOVAN]: [...WETH_ONLY[ChainId.KOVAN],SODA,SOETH]
+  [ChainId.KOVAN]: [...WETH_ONLY[ChainId.KOVAN], SODA, SOETH, USDT]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT],
-  [ChainId.KOVAN]: [SODA,SOETH,SODAWETH]
+  [ChainId.KOVAN]: [SODA, SOETH, SODAWETH]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -70,10 +72,10 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     ],
     [USDC, USDT],
     [DAI, USDT],
-    [SODA,SOETH],
+    [SODA, SOETH]
   ],
   [ChainId.KOVAN]: [
-    [SODA,SOETH],
+    [SODA, SOETH]
   ]
 }
 
